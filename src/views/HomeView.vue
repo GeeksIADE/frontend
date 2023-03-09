@@ -16,14 +16,5 @@ import WorldMap from '../components/WorldMap.vue';
 <style>
 .title {
   margin-top: 10%;
-  margin-left: 5%;
 }
-
-/* @media (min-width: 1024px) {
-  .home {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-} */
 </style>

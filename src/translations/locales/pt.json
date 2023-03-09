@@ -10,5 +10,17 @@
     },
     "home": {
         "text": "Bem-vindos ao Geeks"
+    },
+    "login": {
+        "email": "O seu email",
+        "password": "A sua palavra passe",
+        "login": "Entrar",
+        "forgot": "Esqueceu-se da palavra passe?"
+    },
+    "signup": {
+        "fullname": "O seu nome",
+        "email": "O seu email",
+        "password": "A sua palavra passe",
+        "signup": "Registar"
     }
 }

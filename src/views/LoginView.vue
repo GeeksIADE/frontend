@@ -17,14 +17,14 @@
                                         <div class="section text-center">
                                             <h4 class="mb-4 pb-3">{{ $t("nav.login") }}</h4>
                                             <div class="form-group"> <input type="email" name="logemail" class="form-style"
-                                                    placeholder="Your Email" id="logemail" autocomplete="none"> <i
+                                                    :placeholder="$t('login.email')" id="logemail" autocomplete="none"> <i
                                                     class="input-icon fa fa-at"></i> </div>
                                             <div class="form-group mt-2"> <input type="password" name="logpass"
-                                                    class="form-style" placeholder="Your Password" id="logpass"
+                                                    class="form-style" :placeholder="$t('login.password')" id="logpass"
                                                     autocomplete="none"> <i class="input-icon fa fa-lock"></i> </div> <a
-                                                href="#" class="btn mt-4">Login</a>
-                                            <p class="mb-0 mt-4 text-center"> <a href="#0" class="link">Forgot your
-                                                    password?</a> </p>
+                                                href="#" class="btn mt-4">{{ $t("login.login") }}</a>
+                                            <p class="mb-0 mt-4 text-center"> <a href="#0" class="link">{{
+                                                $t("login.forgot") }}</a> </p>
                                         </div>
                                     </div>
                                 </div>
@@ -33,15 +33,18 @@
                                         <div class="section text-center">
                                             <h4 class="mb-4 pb-3">{{ $t("nav.signup") }}</h4>
                                             <div class="form-group"> <input type="text" name="logname" class="form-style"
-                                                    placeholder="Your Full Name" id="logname" autocomplete="none"> <i
-                                                    class="input-icon fa fa-user"></i> </div>
+                                                    :placeholder="$t('signup.fullname')" id="logname" autocomplete="none">
+                                                <i class="input-icon fa fa-user"></i>
+                                            </div>
                                             <div class="form-group mt-2"> <input type="email" name="logemail"
-                                                    class="form-style" placeholder="Your Email" id="logemail"
-                                                    autocomplete="none"> <i class="input-icon fa fa-at"></i> </div>
+                                                    class="form-style" :placeholder="$t('signup.email')" id="
+                                                                                        logemail" autocomplete="none"> <i
+                                                    class="input-icon fa fa-at"></i>
+                                            </div>
                                             <div class="form-group mt-2"> <input type="password" name="logpass"
-                                                    class="form-style" placeholder="Your Password" id="logpass"
+                                                    class="form-style" :placeholder="$t('signup.password')" id="logpass"
                                                     autocomplete="none"> <i class="input-icon fa fa-lock"></i> </div> <a
-                                                href="#" class="btn mt-4">Signup</a>
+                                                href="#" class="btn mt-4">{{ $t("signup.signup") }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -125,7 +128,7 @@ h6 span {
 }
 
 .full-height {
-    min-height: 100vh
+    min-height: 50vh
 }
 
 [type="checkbox"]:checked,

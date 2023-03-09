@@ -6,9 +6,21 @@
     },
     "nav": {
         "login": "Login",
-        "signup": "Signup"
+        "signup": "Sign up"
     },
     "home": {
         "text": "Welcome to Geeks"
+    },
+    "login": {
+        "email": "Your email",
+        "password": "Your password",
+        "login": "Log in",
+        "forgot": "Forgot your password?"
+    },
+    "signup": {
+        "fullname": "Your full name",
+        "email": "Your email",
+        "password": "Your password",
+        "signup": "Sign up"
     }
 }

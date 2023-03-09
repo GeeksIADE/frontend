@@ -1,5 +1,18 @@
 @import './base.css';
 
+.btn-primary {
+  background-color: blueviolet;
+  border-color: black;
+  --bs-btn-active-bg: rgba(158, 43, 226, 1);
+  --bs-btn-active-color: black;
+  --bs-btn-hover-color: black;
+}
+
+.btn-primary:hover {
+  background-color: rgba(158, 43, 226, 1);
+  border-color: black;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
