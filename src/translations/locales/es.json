@@ -1,0 +1,14 @@
+{
+    "locale": {
+        "pt": "Portugués",
+        "en": "Inglés",
+        "es": "Español"
+    },
+    "nav": {
+        "login": "Entrar",
+        "signup": "Registrar"
+    },
+    "home": {
+        "text": "Esta é a página príncipal"
+    }
+}

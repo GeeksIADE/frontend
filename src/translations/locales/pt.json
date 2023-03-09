@@ -1,0 +1,14 @@
+{
+    "locale": {
+        "pt": "Português",
+        "en": "Inglês",
+        "es": "Espanhol"
+    },
+    "nav": {
+        "login": "Entrar",
+        "signup": "Registar"
+    },
+    "home": {
+        "text": "Bem-vindos ao Geeks"
+    }
+}
