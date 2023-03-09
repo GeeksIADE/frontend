@@ -3,7 +3,7 @@
 
 <template>
     <center>
-        <select @change="switchLanguage">
+        <select @change="switchLanguage" class="form-select">
             <option v-for="sLocale in supportedLocales" :key="`locale-${sLocale}`" :value="sLocale"
                 :selected="locale === sLocale">
                 {{ t(`locale.${sLocale}`) }}
@@ -27,3 +27,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.form-select {
+    width: auto;
+}
+</style>
