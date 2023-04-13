@@ -13,3 +13,17 @@
   }
 } */
 </style>
+
+<script>
+export default {
+  name: 'AboutView',
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.isAuthenticated
+    },
+    token() {
+      return Cookies.get('token')
+    }
+  },
+}
+</script>

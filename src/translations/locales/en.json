@@ -1,9 +1,4 @@
 {
-    "locale": {
-        "pt": "Portuguese",
-        "en": "English",
-        "es": "Spanish"
-    },
     "nav": {
         "login": "Login",
         "signup": "Sign up"
@@ -12,10 +7,15 @@
         "text": "Welcome to Geeks"
     },
     "login": {
+        "first_name": "Your first name",
+        "last_name": "Your last name",
+        "username": "Your username",
         "email": "Your email",
         "password": "Your password",
         "login": "Log in",
-        "forgot": "Forgot your password?"
+        "forgot": "Forgot password?",
+        "signup": "Sign up",
+        "terms": "Terms and Conditions"
     },
     "signup": {
         "fullname": "Your full name",

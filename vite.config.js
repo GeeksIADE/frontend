@@ -17,5 +17,20 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  server: {
+    host: 'localhost',
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:7000',
+        changeOrigin: true,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type'
+        }
+      }
+    }
   }
 })

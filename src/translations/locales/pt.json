@@ -1,21 +1,24 @@
 {
-    "locale": {
-        "pt": "Português",
-        "en": "Inglês",
-        "es": "Espanhol"
-    },
     "nav": {
         "login": "Entrar",
         "signup": "Registar"
     },
     "home": {
-        "text": "Bem-vindos ao Geeks"
+        "text": "Bem-vindos ao Geeks",
+        "description1": "Geeks é uma aplicação para te ajudar a encontrar pessoas com os mesmos gostos que tu",
+        "description2": "Conhece novas pessoas e faz novos amigos. Vai ao teu perfil e adiciona os teus jogos favoritos à tua lista para todos poderem ver o que preferes.",
+        "description3": "Queres jogar em grupo mas falta-te uma pessoa? Junta-te a nós e nunca terás problemas a encontrar alguém para jogar contigo. Podes criar tu a tua própria sala ou apenas juntar-te a outra para facilitar."
     },
     "login": {
+        "first_name": "O eu primeiro nome",
+        "last_name": "O eu último nome",
+        "username": "O seu nome de utilizador",
         "email": "O seu email",
-        "password": "A sua palavra passe",
+        "password": "A sua senha",
         "login": "Entrar",
-        "forgot": "Esqueceu-se da palavra passe?"
+        "forgot": "Esqueceu-se da sua senha?",
+        "signup": "Registar",
+        "terms": "Termos e Condições"
     },
     "signup": {
         "fullname": "O seu nome",

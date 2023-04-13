@@ -1,0 +1,27 @@
+{
+    "nav": {
+        "login": "ログイン",
+        "signup": "サインアップ"
+    },
+    "home": {
+        "text": "Geeksへようこそ"
+    },
+    "login": {
+        "first_name": "名",
+        "last_name": "姓",
+        "username": "ユーザー名",
+        "email": "メールアドレス",
+        "password": "パスワード",
+        "login": "ログイン",
+        "forgot": "パスワードをお忘れですか？",
+        "signup": "サインアップ",
+        "terms": "利用規約"
+    },
+    "signup": {
+        "first_name": "名",
+        "last_name": "姓",
+        "email": "メールアドレス",
+        "password": "パスワード",
+        "signup": "サインアップ"
+    }
+}

@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
     <div class="navbar">
         <div class="logo">
@@ -9,9 +6,19 @@
             </picture>
         </div>
         <div class="menu">
+            <router-link v-if="isAuthenticated" class="nav-link" to="/about-us">About Us</router-link>
+            <div v-if="isAuthenticated" class="dropdown">
+                <span class="nav-link dropdown-toggle">Rooms</span>
+                <div class="dropdown-content">
+                    <router-link tag="a" to="/rooms/create" class="dropdown-item">Create Room</router-link>
+                    <router-link tag="a" to="/rooms/join" class="dropdown-item">Join Room</router-link>
+                </div>
+            </div>
+            <router-link v-if="isAuthenticated" class="nav-link" to="/games">Games</router-link>
             <ul>
-                <li><router-link to="/login"><button type="button" class="btn btn-primary">{{ $t("nav.login") }} / {{
-                    $t("nav.signup") }}</button></router-link></li>
+                <li v-if="!isAuthenticated"><router-link to="/login"><button type="button" class="btn btn-primary">{{
+                    $t("nav.login") }} / {{
+        $t("nav.signup") }}</button></router-link></li>
                 <li class="row">
                     <div class="col" style="margin: 0; padding: 0;">
                         <SwitchLanguage></SwitchLanguage>
@@ -27,11 +34,13 @@
                     </div>
 
                 </li>
+                <li v-if="isAuthenticated">
+                    <UserProfile :profileImage="profileImage" :options="options" />
+                </li>
             </ul>
         </div>
     </div>
 </template>
-
 
 <style>
 .box {
@@ -63,8 +72,9 @@ a {
 .navbar {
     display: flex;
     justify-content: space-between;
-    /* margin-left: 8%; */
-    /* margin-right: 8%; */
+    /* background-color: #4b0082; */
+    /* Change background color here */
+    padding: 20px;
 }
 
 .logo {
@@ -84,16 +94,166 @@ a {
 }
 
 .menu li {
-    padding: 20px;
-    /* margin-left: 20px; */
-    font-size: 16px;
+    padding: 20px 40px;
+    /* Increase padding for more space */
+    font-size: 18px;
     font-weight: bold;
+}
+
+.nav-link {
+    padding: 30px !important;
+    /* Increase padding for more space */
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    color: #f1f1f1;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2d2d2d;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content router-link {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.dropdown-content router-link:hover {
+    background-color: #535353;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-toggle::after {
+    content: "";
+    border-top: 5px solid #fff;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #4b0082;
+    /* Match the navbar background color */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 10px;
+    text-align: center;
+    left: 0%;
+    /* Add this line to open the dropdown to the side */
+    top: 70%;
+    /* Add this line to align the dropdown to the top */
+}
+
+.dropdown-item {
+    color: #fff;
+    padding: 12px 16px;
+    /* Adjust padding to add more vertical space between options */
+    text-decoration: none;
+    display: block;
+    font-weight: normal;
+    white-space: nowrap;
+    font-size: 16px;
+}
+
+.dropdown-item:hover {
+    background-color: #6a40a9;
+    /* Add a background color on hover */
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    /* Display the dropdown options as block elements */
+}
+
+.dropdown-content .dropdown-item:hover {
+    background-color: #6a40a9;
+}
+
+.dropdown-toggle::after {
+    content: "";
+    border-top: 5px solid #fff;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: middle;
+    /* transform: rotate(-90deg); */
+    /* Rotate the arrow 90 degrees to indicate the side */
 }
 </style>
 
+
+
 <script>
 import SwitchLanguage from "@/components/SwitchLanguage.vue"
+import UserProfile from './UserProfile.vue';
+import Cookies from 'js-cookie';
+
 export default {
-    components: { SwitchLanguage }
-}
+    name: 'NavBar',
+    components: {
+        UserProfile,
+        SwitchLanguage
+    },
+    computed: {
+        isAuthenticated() {
+            return this.$store.state.isAuthenticated
+        },
+        token() {
+            return Cookies.get('token')
+        }
+    },
+    data() {
+        return {
+            profileImage: '../assets/world.png',
+            options: [
+                {
+                    label: 'Show Profile',
+                    action: () => {
+                        console.log('Show Profile');
+                        this.$router.push('/profile');
+                    },
+                },
+                {
+                    label: 'Logout',
+                    action: async () => {
+                        await this.$store.dispatch('logout')
+                        this.$router.push('/');
+                    },
+                },
+            ],
+        };
+    },
+};
 </script>

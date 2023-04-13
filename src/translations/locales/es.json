@@ -1,14 +1,26 @@
 {
-    "locale": {
-        "pt": "Portugués",
-        "en": "Inglés",
-        "es": "Español"
-    },
     "nav": {
-        "login": "Entrar",
-        "signup": "Registrar"
+        "login": "Iniciar sesión",
+        "signup": "Registrarse"
     },
     "home": {
-        "text": "Esta é a página príncipal"
+        "text": "Bienvenido a Geeks"
+    },
+    "login": {
+        "first_name": "Tu nombre",
+        "last_name": "Tu apellido",
+        "username": "Tu nombre de usuario",
+        "email": "Tu correo electrónico",
+        "password": "Tu contraseña",
+        "login": "Iniciar sesión",
+        "forgot": "¿Olvidaste tu contraseña?",
+        "signup": "Registrarse",
+        "terms": "Términos y condiciones"
+    },
+    "signup": {
+        "fullname": "Tu nombre completo",
+        "email": "Tu correo electrónico",
+        "password": "Tu contraseña",
+        "signup": "Registrarse"
     }
 }

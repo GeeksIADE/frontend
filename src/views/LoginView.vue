@@ -22,7 +22,7 @@
                                             <div class="form-group mt-2"> <input type="password" name="logpass"
                                                     class="form-style" :placeholder="$t('login.password')" id="logpass"
                                                     autocomplete="none"> <i class="input-icon fa fa-lock"></i> </div> <a
-                                                href="#" class="btn mt-4">{{ $t("login.login") }}</a>
+                                                href="#" @click="login" class="btn mt-4">{{ $t("login.login") }}</a>
                                             <p class="mb-0 mt-4 text-center"> <a href="#0" class="link">{{
                                                 $t("login.forgot") }}</a> </p>
                                         </div>
@@ -31,25 +31,44 @@
                                 <div class="card-back">
                                     <div class="center-wrap">
                                         <div class="section text-center">
-                                            <h4 class="mb-4 pb-3">{{ $t("nav.signup") }}</h4>
-                                            <div class="form-group"> <input type="text" name="logname" class="form-style"
-                                                    :placeholder="$t('signup.fullname')" id="logname" autocomplete="none">
+                                            <!-- <h4 class="mb-4 pb-3">{{ $t("nav.signup") }}</h4> -->
+
+                                            <div class="form-group">
+                                                <input type="text" name="first_name" class="form-style"
+                                                    :placeholder="$t('login.first_name')" id="first_name"
+                                                    autocomplete="none">
                                                 <i class="input-icon fa fa-user"></i>
                                             </div>
-                                            <div class="form-group mt-2"> <input type="email" name="logemail"
-                                                    class="form-style" :placeholder="$t('signup.email')" id="
-                                                                                        logemail" autocomplete="none"> <i
-                                                    class="input-icon fa fa-at"></i>
+                                            <div class="form-group mt-2">
+                                                <input type="text" name="last_name" class="form-style"
+                                                    :placeholder="$t('login.last_name')" id="last_name" autocomplete="none">
+                                                <i class="input-icon fa fa-user"></i>
                                             </div>
-                                            <div class="form-group mt-2"> <input type="password" name="logpass"
-                                                    class="form-style" :placeholder="$t('signup.password')" id="logpass"
-                                                    autocomplete="none"> <i class="input-icon fa fa-lock"></i> </div> <a
-                                                href="#" class="btn mt-4">{{ $t("signup.signup") }}</a>
+                                            <div class="form-group mt-2">
+                                                <input type="text" name="username" class="form-style"
+                                                    :placeholder="$t('login.username')" id="username" autocomplete="none">
+                                                <i class="input-icon fa fa-user"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="email" name="regemail" class="form-style"
+                                                    :placeholder="$t('login.email')" id="regemail" autocomplete="none">
+                                                <i class="input-icon fa fa-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="regpass" class="form-style"
+                                                    :placeholder="$t('login.password')" id="regpass" autocomplete="none">
+                                                <i class="input-icon fa fa-lock"></i>
+                                            </div>
+                                            <a href="#" @click="signup" class="btn mt-4">{{ $t("login.signup") }}</a>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <p class="mb-0 mt-4 text-center">
+                            <a href="#0" class="link">{{ $t("login.terms") }}</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -57,7 +76,55 @@
     </div>
 </template>
 
-  
+<script>
+
+export default {
+    computed: {
+        isAuthenticated() {
+            return this.$store.state.isAuthenticated
+        },
+        token() {
+            return this.$store.state.token
+        }
+    },
+    methods: {
+        async signup() {
+            const first_name = document.getElementById('first_name').value
+            const last_name = document.getElementById('last_name').value
+            const username = document.getElementById('username').value
+            const user_email = document.getElementById('regemail').value
+            const user_password = document.getElementById('regpass').value
+            await this.$router.push("/");
+            return;
+
+            const response = await fetch('http://127.0.0.1:7000/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ first_name, last_name, username, user_email, user_password })
+            })
+
+            if (response.ok) {
+                const data = await response.json()
+                console.log(data)
+                // do something with the response data, e.g. store it in localStorage or redirect to a new page
+            } else {
+                const error = await response.text()
+                // display the error message to the user
+            }
+        },
+        async login() {
+
+            const username = document.getElementById('logemail').value
+            const password = document.getElementById('logpass').value
+
+            await this.$store.dispatch('login', { username, password })
+            // this.$router.push('/')
+        }
+
+    }
+}
+
+</script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 
@@ -70,8 +137,8 @@
 } */
 
 .login-frame {
-    margin-top: 20%;
-    margin-left: 5%;
+    margin-top: 10%;
+    /* margin-left: 5%; */
 }
 
 .login-frame-right {

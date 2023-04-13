@@ -1,0 +1,26 @@
+{
+    "nav": {
+        "login": "Anmeldung",
+        "signup": "Registrieren"
+    },
+    "home": {
+        "text": "Willkommen bei Geeks"
+    },
+    "login": {
+        "first_name": "Ihr Vorname",
+        "last_name": "Ihr Nachname",
+        "username": "Ihr Benutzername",
+        "email": "Ihre E-Mail-Adresse",
+        "password": "Ihr Passwort",
+        "login": "Anmelden",
+        "forgot": "Passwort vergessen?",
+        "signup": "Registrieren",
+        "terms": "Nutzungsbedingungen"
+    },
+    "signup": {
+        "fullname": "Dein vollständiger Name",
+        "email": "Deine E-Mail-Adresse",
+        "password": "Dein Passwort",
+        "signup": "Registrieren"
+    }
+}
