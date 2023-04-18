@@ -1,16 +1,13 @@
 <template>
   <div class="about">
     <center>
-      <h1 v-if="isAuthenticated">About Us</h1>
-      <h1 v-if="!isAuthenticated">Welcome to Geeks</h1>
+      <h1 v-if="isAuthenticated">{{ $t("nav.about-us") }}</h1>
+      <h1 v-if="!isAuthenticated">{{ $t("home.welcome") }}</h1>
       <div class="text">
-        <p>Geeks é uma aplicação para te ajudar a encontrar pessoas com os mesmos gostos que tu</p>
-        <p>Conhece novas pessoas e faz novos amigos. Vai ao teu perfil e adiciona os teus jogos favoritos à tua lista para
-          todos poderem ver o que preferes.</p>
+        <p>{{ $t("home.description1") }}</p>
+        <p>{{ $t("home.description2") }}</p>
 
-        <p>Queres jogar em grupo mas falta-te uma pessoa? Junta-te a nós e nunca terás problemas a encontrar alguém
-          para
-          jogar contigo. Podes criar tu a tua própria sala ou apenas juntar-te a outra para facilitar.</p>
+        <p>{{ $t("home.description3") }}</p>
       </div>
 
     </center>

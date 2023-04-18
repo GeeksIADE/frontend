@@ -1,23 +1,22 @@
 <template>
     <div class="container create-room">
-        <h2>Create Room</h2>
+        <h2>{{ $t("create-room.title") }}</h2>
         <form @submit.prevent="createRoom">
             <div class="mb-3">
-                <label for="roomTitle" class="form-label">Room Title</label>
-                <input type="text" class="form-control" id="roomTitle" v-model="roomTitle" placeholder="Enter room title"
-                    required>
+                <label for="roomTitle" class="form-label">{{ $t("create-room.room-title") }}</label>
+                <input type="text" class="form-control" id="roomTitle" v-model="roomTitle"
+                    :placeholder='$t("create-room.room-title")' required>
             </div>
             <div class="mb-3">
-                <label for="gameName" class="form-label">Game Name</label>
-                <input type="text" class="form-control" id="gameName" v-model="gameName" placeholder="Enter game name"
-                    required>
+                <label for="gameName" class="form-label">{{ $t("create-room.game-name") }}</label>
+                <input type="text" class="form-control" id="gameName" v-model="gameName"
+                    :placeholder='$t("create-room.game-name")' required>
             </div>
             <div class="mb-3">
                 <label for="roomRank" class="form-label">Rank</label>
-                <input type="number" class="form-control" id="roomRank" v-model="roomRank" placeholder="Enter rank"
-                    required>
+                <input type="number" class="form-control" id="roomRank" v-model="roomRank" placeholder="Rank" required>
             </div>
-            <button type="submit" class="btn btn-primary">Create Room</button>
+            <button type="submit" class="btn btn-primary">{{ $t("create-room.create") }}</button>
         </form>
     </div>
 </template>

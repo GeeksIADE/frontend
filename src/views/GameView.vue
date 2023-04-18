@@ -1,6 +1,6 @@
 <template>
     <div class="games">
-        <h1>Games</h1>
+        <h1>{{ $t("games.title") }}</h1>
         <div class="game-list-container">
             <div class="game-list">
                 <div v-for="game in orderedGames" :key="game.id" class="game-item d-flex align-items-center mb-3">

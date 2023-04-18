@@ -1,15 +1,15 @@
 <template>
     <div class="container mt-5">
-        <h2>Join a Room</h2>
+        <h2>{{ $t("rooms.join") }}</h2>
         <div class="row mt-3">
             <div class="col-md-4">
-                <label for="game-filter" class="form-label">Filter by game:</label>
+                <label for="game-filter" class="form-label">{{ $t("rooms.filter-by-game") }}:</label>
                 <select id="game-filter" class="form-select" v-model="selectedGame">
                     <option v-for="game in games" :value="game">{{ game }}</option>
                 </select>
             </div>
             <div class="col-md-8">
-                <label for="search" class="form-label">Search for rooms:</label>
+                <label for="search" class="form-label">{{ $t("rooms.search-for-rooms") }}:</label>
                 <input type="text" id="search" class="form-control" v-model="searchText" />
             </div>
         </div>
@@ -19,10 +19,10 @@
                     <table class="table table-striped table-games">
                         <thead>
                             <tr>
-                                <th>Title</th>
-                                <th>Game</th>
-                                <th>Rank</th>
-                                <th>Region</th>
+                                <th>{{ $t("rooms.title") }}</th>
+                                <th>{{ $t("rooms.game") }}</th>
+                                <th>{{ $t("rooms.rank") }}</th>
+                                <th>{{ $t("rooms.region") }}</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -34,7 +34,7 @@
                                 <td>{{ room.region }}</td>
                                 <td>
                                     <button class="btn btn-primary" @click="joinRoom(room.code)">
-                                        Join
+                                        {{ $t("rooms.join-btn") }}
                                     </button>
                                 </td>
                             </tr>
@@ -42,12 +42,12 @@
                     </table>
                     <center>
                         <div class="mt-3">
-                            <label for="roomCode" class="form-label">Join with a Code</label>
+                            <label for="roomCode" class="form-label">{{ $t("rooms.join-code") }}</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" id="roomCode" v-model="roomCode"
-                                    placeholder="Enter room code" style="width: 150px;">
+                                    :placeholder='$t("rooms.access-code")' style="width: 150px;">
                                 <button type="button" style="margin-bottom: 10px" class="btn btn-primary input-group-append"
-                                    @click="joinWithCode">Join</button>
+                                    @click="joinWithCode">{{ $t("rooms.join-btn") }}</button>
                             </div>
                         </div>
                     </center>

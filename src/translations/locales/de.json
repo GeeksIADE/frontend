@@ -1,26 +1,62 @@
 {
     "nav": {
-        "login": "Anmeldung",
-        "signup": "Registrieren"
+        "login": "Anmelden",
+        "logout": "Abmelden",
+        "signup": "Registrieren",
+        "about-us": "Über uns",
+        "create-room": "Raum erstellen",
+        "join-room": "Raum beitreten",
+        "games": "Spiele",
+        "rooms": "Räume",
+        "show-profile": "Profil anzeigen"
     },
     "home": {
-        "text": "Willkommen bei Geeks"
+        "welcome": "Willkommen bei Geeks",
+        "description1": "Geeks ist eine Anwendung, die Ihnen hilft, Menschen mit den gleichen Interessen wie Ihnen zu finden.",
+        "description2": "Lerne Menschen kennen und finde neue Freunde. Gehe zu deinem Profil und füge deine Lieblingsspiele zu deiner Liste hinzu, damit jeder sehen kann, was dir gefällt.",
+        "description3": "Möchtest du in einer Gruppe spielen, aber es fehlt jemand? Schließe dich uns an und du wirst nie Probleme haben, jemanden zum Spielen zu finden. Du kannst deinen eigenen Raum erstellen oder anderen beitreten."
     },
     "login": {
-        "first_name": "Ihr Vorname",
-        "last_name": "Ihr Nachname",
-        "username": "Ihr Benutzername",
-        "email": "Ihre E-Mail-Adresse",
-        "password": "Ihr Passwort",
-        "login": "Anmelden",
+        "first_name": "Dein Vorname",
+        "last_name": "Dein Nachname",
+        "username": "Dein Benutzername",
+        "email": "Deine E-Mail",
+        "password": "Dein Passwort",
+        "login": "Einloggen",
         "forgot": "Passwort vergessen?",
         "signup": "Registrieren",
-        "terms": "Nutzungsbedingungen"
+        "terms": "Allgemeine Geschäftsbedingungen"
     },
     "signup": {
         "fullname": "Dein vollständiger Name",
-        "email": "Deine E-Mail-Adresse",
+        "email": "Deine E-Mail",
         "password": "Dein Passwort",
         "signup": "Registrieren"
+    },
+    "games": {
+        "add-to-list": "Spiele zu Ihrer Liste hinzufügen",
+        "add": "Spiel hinzufügen",
+        "name": "Spielname:",
+        "platform": "Plattform",
+        "title": "Spiele"
+    },
+    "rooms": {
+        "join": "Einem Raum beitreten",
+        "filter-by-game": "Nach Spiel filtern",
+        "search-for-rooms": "Nach Räumen suchen",
+        "title": "Titel",
+        "game": "Spiel",
+        "rank": "Rang",
+        "region": "Region",
+        "join-btn": "Beitreten",
+        "join-code": "Mit einem Code beitreten",
+        "access-code": "Raumzugangscode"
+    },
+    "create-room": {
+        "title": "Raum erstellen",
+        "room-title": "Raumtitel",
+        "game-name": "Spielname",
+        "create": "Raum erstellen",
+        "enter": "Betreten"
     }
 }

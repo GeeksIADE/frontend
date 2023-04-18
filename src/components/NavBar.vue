@@ -6,15 +6,15 @@
             </picture>
         </div>
         <div class="menu">
-            <router-link v-if="isAuthenticated" class="nav-link" to="/about-us">About Us</router-link>
+            <router-link v-if="isAuthenticated" class="nav-link" to="/about-us">{{ $t("nav.about-us") }}</router-link>
             <div v-if="isAuthenticated" class="dropdown">
-                <span class="nav-link dropdown-toggle">Rooms</span>
+                <span class="nav-link dropdown-toggle">{{ $t("nav.rooms") }}</span>
                 <div class="dropdown-content">
-                    <router-link tag="a" to="/rooms/create" class="dropdown-item">Create Room</router-link>
-                    <router-link tag="a" to="/rooms/join" class="dropdown-item">Join Room</router-link>
+                    <router-link tag="a" to="/rooms/create" class="dropdown-item">{{ $t("nav.create-room") }}</router-link>
+                    <router-link tag="a" to="/rooms/join" class="dropdown-item">{{ $t("nav.join-room") }}</router-link>
                 </div>
             </div>
-            <router-link v-if="isAuthenticated" class="nav-link" to="/games">Games</router-link>
+            <router-link v-if="isAuthenticated" class="nav-link" to="/games">{{ $t("nav.games") }}</router-link>
             <ul>
                 <li v-if="!isAuthenticated"><router-link to="/login"><button type="button" class="btn btn-primary">{{
                     $t("nav.login") }} / {{
@@ -229,14 +229,14 @@ export default {
             profileImage: '../assets/world.png',
             options: [
                 {
-                    label: 'Show Profile',
+                    label: this.$t("nav.show-profile"),
                     action: () => {
                         console.log('Show Profile');
                         this.$router.push('/profile');
                     },
                 },
                 {
-                    label: 'Logout',
+                    label: this.$t("nav.logout"),
                     action: async () => {
                         await this.$store.dispatch('logout')
                         this.$router.push('/');

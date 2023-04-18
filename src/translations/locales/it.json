@@ -1,10 +1,20 @@
 {
     "nav": {
         "login": "Accedi",
-        "signup": "Registrati"
+        "logout": "Esci",
+        "signup": "Iscriviti",
+        "about-us": "Su di noi",
+        "create-room": "Crea stanza",
+        "join-room": "Entra in stanza",
+        "games": "Giochi",
+        "rooms": "Stanze",
+        "show-profile": "Mostra profilo"
     },
     "home": {
-        "text": "Benvenuto in Geeks"
+        "welcome": "Benvenuto su Geeks",
+        "description1": "Geeks è un'applicazione che ti aiuta a trovare persone con gli stessi interessi che hai tu.",
+        "description2": "Incontra persone e fai nuovi amici. Vai sul tuo profilo e aggiungi i tuoi giochi preferiti alla tua lista in modo che tutti possano vedere ciò che ti piace.",
+        "description3": "Vuoi giocare in gruppo ma ti manca qualcuno? Unisciti a noi e non avrai mai più problemi a trovare qualcuno con cui giocare. Puoi creare la tua stanza o unirti a quelle degli altri."
     },
     "login": {
         "first_name": "Il tuo nome",
@@ -13,14 +23,40 @@
         "email": "La tua email",
         "password": "La tua password",
         "login": "Accedi",
-        "forgot": "Hai dimenticato la password?",
-        "signup": "Registrati",
+        "forgot": "Password dimenticata?",
+        "signup": "Iscriviti",
         "terms": "Termini e condizioni"
     },
     "signup": {
         "fullname": "Il tuo nome completo",
         "email": "La tua email",
         "password": "La tua password",
-        "signup": "Registrati"
+        "signup": "Iscriviti"
+    },
+    "games": {
+        "add-to-list": "Aggiungi giochi alla tua lista",
+        "add": "Aggiungi gioco",
+        "name": "Nome del gioco:",
+        "platform": "Piattaforma",
+        "title": "Giochi"
+    },
+    "rooms": {
+        "join": "Entra in una stanza",
+        "filter-by-game": "Filtra per gioco",
+        "search-for-rooms": "Cerca stanze",
+        "title": "Titolo",
+        "game": "Gioco",
+        "rank": "Classifica",
+        "region": "Regione",
+        "join-btn": "Entra",
+        "join-code": "Entra con un codice",
+        "access-code": "Codice di accesso alla stanza"
+    },
+    "create-room": {
+        "title": "Crea stanza",
+        "room-title": "Titolo della stanza",
+        "game-name": "Nome del gioco",
+        "create": "Crea stanza",
+        "enter": "Entra"
     }
 }

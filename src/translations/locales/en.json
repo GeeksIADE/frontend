@@ -1,10 +1,20 @@
 {
     "nav": {
         "login": "Login",
-        "signup": "Sign up"
+        "logout": "Logout",
+        "signup": "Sign up",
+        "about-us": "About us",
+        "create-room": "Create room",
+        "join-room": "Join room",
+        "games": "Games",
+        "rooms": "Rooms",
+        "show-profile": "Show profile"
     },
     "home": {
-        "text": "Welcome to Geeks"
+        "welcome": "Welcome to Geeks",
+        "description1": "Geeks is an application to help you find people with the same interests as you.",
+        "description2": "Meet people and make new friends. Go to your profile and add your favorite games to your list so everyone can see what you like.",
+        "description3": "Want to play in a group but you're missing someone? Join us and you will never have trouble finding someone to play with. You can create your own room or join others."
     },
     "login": {
         "first_name": "Your first name",
@@ -22,5 +32,31 @@
         "email": "Your email",
         "password": "Your password",
         "signup": "Sign up"
+    },
+    "games": {
+        "add-to-list": "Add Games to Your List",
+        "add": "Add game",
+        "name": "Game name:",
+        "platform": "Platform",
+        "title": "Games"
+    },
+    "rooms": {
+        "join": "Join a room",
+        "filter-by-game": "Filter by game",
+        "search-for-rooms": "Search for rooms",
+        "title": "Title",
+        "game": "Game",
+        "rank": "Rank",
+        "region": "Region",
+        "join-btn": "Join",
+        "join-code": "Join with a code",
+        "access-code": "Room access code"
+    },
+    "create-room": {
+        "title": "Create Room",
+        "room-title": "Room Title",
+        "game-name": "Game Name",
+        "create": "Create Room",
+        "enter": "Enter"
     }
 }

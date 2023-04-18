@@ -1,10 +1,20 @@
 {
     "nav": {
         "login": "Iniciar sesión",
-        "signup": "Registrarse"
+        "logout": "Cerrar sesión",
+        "signup": "Registrarse",
+        "about-us": "Acerca de nosotros",
+        "create-room": "Crear sala",
+        "join-room": "Unirse a sala",
+        "games": "Juegos",
+        "rooms": "Salas",
+        "show-profile": "Mostrar perfil"
     },
     "home": {
-        "text": "Bienvenido a Geeks"
+        "welcome": "Bienvenido a Geeks",
+        "description1": "Geeks es una aplicación para ayudarte a encontrar personas con los mismos intereses que tú.",
+        "description2": "Conoce personas y haz nuevos amigos. Ve a tu perfil y añade tus juegos favoritos a tu lista para que todos puedan ver lo que te gusta.",
+        "description3": "¿Quieres jugar en grupo pero te falta alguien? Únete a nosotros y nunca tendrás problemas para encontrar a alguien con quien jugar. Puedes crear tu propia sala o unirte a otras."
     },
     "login": {
         "first_name": "Tu nombre",
@@ -13,7 +23,7 @@
         "email": "Tu correo electrónico",
         "password": "Tu contraseña",
         "login": "Iniciar sesión",
-        "forgot": "¿Olvidaste tu contraseña?",
+        "forgot": "¿Olvidaste la contraseña?",
         "signup": "Registrarse",
         "terms": "Términos y condiciones"
     },
@@ -22,5 +32,31 @@
         "email": "Tu correo electrónico",
         "password": "Tu contraseña",
         "signup": "Registrarse"
+    },
+    "games": {
+        "add-to-list": "Añadir juegos a tu lista",
+        "add": "Añadir juego",
+        "name": "Nombre del juego:",
+        "platform": "Plataforma",
+        "title": "Juegos"
+    },
+    "rooms": {
+        "join": "Unirse a una sala",
+        "filter-by-game": "Filtrar por juego",
+        "search-for-rooms": "Buscar salas",
+        "title": "Título",
+        "game": "Juego",
+        "rank": "Rango",
+        "region": "Región",
+        "join-btn": "Unirse",
+        "join-code": "Unirse con un código",
+        "access-code": "Código de acceso a la sala"
+    },
+    "create-room": {
+        "title": "Crear sala",
+        "room-title": "Título de la sala",
+        "game-name": "Nombre del juego",
+        "create": "Crear sala",
+        "enter": "Entrar"
     }
 }

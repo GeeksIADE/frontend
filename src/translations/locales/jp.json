@@ -1,27 +1,62 @@
 {
     "nav": {
         "login": "ログイン",
-        "signup": "サインアップ"
+        "logout": "ログアウト",
+        "signup": "サインアップ",
+        "about-us": "私たちについて",
+        "create-room": "ルームを作成",
+        "join-room": "ルームに参加",
+        "games": "ゲーム",
+        "rooms": "ルーム",
+        "show-profile": "プロフィールを表示"
     },
     "home": {
-        "text": "Geeksへようこそ"
+        "welcome": "Geeksへようこそ",
+        "description1": "Geeksは、あなたと同じ興味を持つ人を見つけるためのアプリです。",
+        "description2": "人々と出会い、新しい友達を作りましょう。プロフィールに移動して、お気に入りのゲームをリストに追加し、誰もがあなたが好きなものを見ることができるようにしましょう。",
+        "description3": "グループで遊びたいけど、誰かが足りない？私たちに参加して、誰かと遊ぶのに困ることはありません。自分のルームを作成するか、他のルームに参加できます。"
     },
     "login": {
-        "first_name": "名",
-        "last_name": "姓",
-        "username": "ユーザー名",
-        "email": "メールアドレス",
-        "password": "パスワード",
+        "first_name": "あなたの名前",
+        "last_name": "あなたの苗字",
+        "username": "あなたのユーザー名",
+        "email": "あなたのメールアドレス",
+        "password": "あなたのパスワード",
         "login": "ログイン",
         "forgot": "パスワードをお忘れですか？",
         "signup": "サインアップ",
         "terms": "利用規約"
     },
     "signup": {
-        "first_name": "名",
-        "last_name": "姓",
-        "email": "メールアドレス",
-        "password": "パスワード",
+        "fullname": "あなたのフルネーム",
+        "email": "あなたのメールアドレス",
+        "password": "あなたのパスワード",
         "signup": "サインアップ"
+    },
+    "games": {
+        "add-to-list": "ゲームをリストに追加",
+        "add": "ゲームを追加",
+        "name": "ゲーム名：",
+        "platform": "プラットフォーム",
+        "title": "ゲーム"
+    },
+    "rooms": {
+        "join": "ルームに参加",
+        "filter-by-game": "ゲームで絞り込む",
+        "search-for-rooms": "ルームを検索",
+        "title": "タイトル",
+        "game": "ゲーム",
+        "rank": "ランク",
+        "region": "地域",
+        "join-btn": "参加",
+        "join-code": "コードで参加",
+        "access-code": "ルームのアクセスコード"
+    },
+    "create-room": {
+        "title": "ルームを作成",
+        "room-title": "ルームのタイトル",
+        "game-name": "ゲーム名",
+        "create": "ルームを作成",
+        "enter": "入る"
     }
 }
