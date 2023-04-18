@@ -78,14 +78,15 @@
 
 
 <script>
+import Cookies from 'js-cookie';
 export default {
     data() {
         return {
             editing: false,
             changingPassword: false,
             user: {
-                name: 'John Doe',
-                email: 'john.doe@example.com',
+                name: '',
+                email: '',
                 profileImageUrl: '../assets/avatar.png'
             },
             profileImageFile: null,
@@ -96,12 +97,34 @@ export default {
             }
         };
     },
+    async created() {
+        await this.fetchUserData();
+    },
     computed: {
         profileImageUrl() {
             return this.profileImageFile ? URL.createObjectURL(this.profileImageFile) : this.user.profileImageUrl;
         }
     },
     methods: {
+        async fetchUserData() {
+            try {
+                const token = Cookies.get('token'); // Get the bearer token from cookies
+                const resp = await fetch("http://127.0.0.1:7000/api/users/me", {
+                    headers: {
+                        Authorization: `Bearer ${token}` // Include the bearer token in the request headers
+                    }
+                });
+
+                const data = await resp.json(); // Parse the response data
+
+                this.user.name = data.first_name + " " + data.last_name;
+                this.user.email = data.email;
+                this.user.profileImageUrl = data.profileImageUrl;
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        },
+
         editProfile() {
             this.editing = true;
         },

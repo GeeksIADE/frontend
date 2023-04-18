@@ -52,8 +52,6 @@ export default {
 };
 </script>
 
-
-  
 <style scoped>
 .games {
     display: flex;
@@ -62,8 +60,6 @@ export default {
     min-height: 100vh;
     /* justify-content: center; */
     font-family: Arial, sans-serif;
-
-    /* Add this line to make the text black */
 }
 
 h1 {

@@ -75,7 +75,6 @@
         </div>
     </div>
 </template>
-
 <script>
 
 export default {
@@ -92,33 +91,30 @@ export default {
             const first_name = document.getElementById('first_name').value
             const last_name = document.getElementById('last_name').value
             const username = document.getElementById('username').value
-            const user_email = document.getElementById('regemail').value
-            const user_password = document.getElementById('regpass').value
-            await this.$router.push("/");
-            return;
+            const email = document.getElementById('regemail').value
+            const password = document.getElementById('regpass').value
 
-            const response = await fetch('http://127.0.0.1:7000/api/auth/register', {
+            const response = await fetch('http://127.0.0.1:7000/api/users/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ first_name, last_name, username, user_email, user_password })
-            })
+                body: JSON.stringify({ first_name, last_name, username, email, password })
+            },)
 
             if (response.ok) {
                 const data = await response.json()
                 console.log(data)
-                // do something with the response data, e.g. store it in localStorage or redirect to a new page
+                //todo alerts and maybe log the user in automatically
             } else {
                 const error = await response.text()
-                // display the error message to the user
+                console.log(error)
+                //todo display the error message to the user
             }
         },
         async login() {
-
+            //todo alerts
             const username = document.getElementById('logemail').value
             const password = document.getElementById('logpass').value
-
             await this.$store.dispatch('login', { username, password })
-            // this.$router.push('/')
         }
 
     }

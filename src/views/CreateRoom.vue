@@ -22,9 +22,6 @@
     </div>
 </template>
   
-  <!-- ...existing script and style blocks -->
-  
-  
 <script>
 export default {
     data() {

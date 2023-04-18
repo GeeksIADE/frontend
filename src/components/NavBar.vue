@@ -95,14 +95,12 @@ a {
 
 .menu li {
     padding: 20px 40px;
-    /* Increase padding for more space */
     font-size: 18px;
     font-weight: bold;
 }
 
 .nav-link {
     padding: 30px !important;
-    /* Increase padding for more space */
     font-weight: bold;
     color: #fff;
     text-decoration: none;
@@ -162,22 +160,18 @@ a {
     display: none;
     position: absolute;
     background-color: #4b0082;
-    /* Match the navbar background color */
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 10px;
     text-align: center;
     left: 0%;
-    /* Add this line to open the dropdown to the side */
     top: 70%;
-    /* Add this line to align the dropdown to the top */
 }
 
 .dropdown-item {
     color: #fff;
     padding: 12px 16px;
-    /* Adjust padding to add more vertical space between options */
     text-decoration: none;
     display: block;
     font-weight: normal;
@@ -187,13 +181,11 @@ a {
 
 .dropdown-item:hover {
     background-color: #6a40a9;
-    /* Add a background color on hover */
 }
 
 
 .dropdown:hover .dropdown-content {
     display: block;
-    /* Display the dropdown options as block elements */
 }
 
 .dropdown-content .dropdown-item:hover {
@@ -208,8 +200,6 @@ a {
     display: inline-block;
     margin-left: 5px;
     vertical-align: middle;
-    /* transform: rotate(-90deg); */
-    /* Rotate the arrow 90 degrees to indicate the side */
 }
 </style>
 
