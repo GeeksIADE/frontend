@@ -12,15 +12,29 @@ import store from '../store.js';
 import Cookies from 'js-cookie';
 
 const routes = [
-  { path: '/', name: "home", component: HomeView },
+  {
+    path: '/',
+    name: "home",
+    component: HomeView,
+    beforeEnter: (_, __, next) => {
+      const isAuthenticated = Cookies.get('token') ? true : false;
+      const token = Cookies.get('token');
+
+      if (isAuthenticated && token) {
+        next('/map');
+      } else {
+        next();
+      }
+    }
+  },
   { path: '/about-us', component: HomeView },
   { path: '/rooms', component: RoomView },
   { path: '/games', component: GameView },
   {
     path: '/profile',
     component: ProfileView,
-    beforeEnter: (to, from, next) => {
-      const isAuthenticated = store.getters.isAuthenticated;
+    beforeEnter: (_, __, next) => {
+      const isAuthenticated = Cookies.get('token') ? true : false;
       const token = Cookies.get('token');
 
       if (isAuthenticated && token) {

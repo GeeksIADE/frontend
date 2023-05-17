@@ -87,23 +87,61 @@ export default {
         }
     },
     methods: {
+        async getLocation() {
+            return new Promise((resolve, reject) => {
+                if ('geolocation' in navigator) {
+                    navigator.geolocation.getCurrentPosition(
+                        position => {
+                            resolve({
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude
+                            });
+                        },
+                        async () => {
+                            try {
+                                const response = await fetch('http://ip-api.com/json/');
+                                const data = await response.json();
+                                resolve({
+                                    latitude: data.lat,
+                                    longitude: data.lon
+                                });
+                            } catch (error) {
+                                reject(error);
+                            }
+                        }
+                    );
+                } else {
+                    reject(new Error('Geolocation is not supported in this browser.'));
+                }
+            });
+        },
         async signup() {
             const first_name = document.getElementById('first_name').value
             const last_name = document.getElementById('last_name').value
             const username = document.getElementById('username').value
             const email = document.getElementById('regemail').value
             const password = document.getElementById('regpass').value
+            const location = await this.getLocation();
 
             const response = await fetch('http://127.0.0.1:7000/api/users/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ first_name, last_name, username, email, password })
-            },)
+                body: JSON.stringify({
+                    first_name,
+                    last_name,
+                    username,
+                    email,
+                    password,
+                    latitude: location.latitude,
+                    longitude: location.longitude
+                })
+            });
 
             if (response.ok) {
                 const data = await response.json()
+                await this.$store.dispatch('login', { username, password })
                 console.log(data)
-                //todo alerts and maybe log the user in automatically
+                //todo alerts
             } else {
                 const error = await response.text()
                 console.log(error)

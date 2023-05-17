@@ -5,9 +5,21 @@
 <script>
 import * as Cesium from "cesium";
 import "cesium/Build/Cesium/Widgets/widgets.css";
-
+import Cookies from 'js-cookie';
 export default {
     name: "WorldMap",
+    data() {
+        return {
+            viewer: null,
+            colors: [
+                Cesium.Color.RED,
+                Cesium.Color.GREEN,
+                Cesium.Color.BLUE,
+                Cesium.Color.YELLOW,
+                Cesium.Color.PURPLE
+            ]
+        };
+    },
     mounted() {
         Cesium.buildModuleUrl.setBaseUrl("/node_modules/cesium/Build/Cesium/");
 
@@ -19,7 +31,7 @@ export default {
 
         this.$refs.container.appendChild(container);
 
-        const viewer = new Cesium.Viewer(container, {
+        this.viewer = new Cesium.Viewer(container, {
             terrainProvider: Cesium.createWorldTerrain(),
             imageryProvider: new Cesium.IonImageryProvider({ assetId: 2 }),
             baseLayerPicker: false,
@@ -41,10 +53,10 @@ export default {
                 alpha: true,
             },
         });
+        this.fetchClustersAndDrawPolygons();
+        this.viewer.scene.backgroundColor = Cesium.Color.TRANSPARENT;
 
-        viewer.scene.backgroundColor = Cesium.Color.TRANSPARENT;
-
-        const canvas = viewer.canvas;
+        const canvas = this.viewer.canvas;
         const handleWheel = (event) => {
             event.preventDefault();
             event.stopPropagation();
@@ -56,6 +68,50 @@ export default {
         };
         canvas.addEventListener("wheel", handleWheel, { passive: false });
     },
+    methods: {
+        async fetchClustersAndDrawPolygons() {
+            const token = Cookies.get('token');
+            const response = await fetch("http://127.0.0.1:7000/api/users/nearby", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            const { clusters, currentUserClusterIndex } = await response.json();
+            clusters.forEach((cluster, index) => {
+                const rectangle = Cesium.Rectangle.fromDegrees(
+                    cluster.minLongitude,
+                    cluster.minLatitude,
+                    cluster.maxLongitude,
+                    cluster.maxLatitude
+                );
+
+                this.viewer.entities.add({
+                    name: "Cluster",
+                    rectangle: {
+                        coordinates: rectangle,
+                        material: this.colors[index % this.colors.length].withAlpha(0.5)
+                    }
+                });
+
+                // Add a pin to the center of the user cluster
+                if (index === currentUserClusterIndex) {
+                    const centerLongitude = (cluster.minLongitude + cluster.maxLongitude) / 2;
+                    const centerLatitude = (cluster.minLatitude + cluster.maxLatitude) / 2;
+
+
+                    this.viewer.entities.add({
+                        name: "User Cluster",
+                        position: Cesium.Cartesian3.fromDegrees(centerLongitude, centerLatitude),
+                        billboard: {
+                            image: "../assets/pin.png",
+                            verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                            scale: 0.05
+                        }
+                    });
+                }
+            });
+        }
+    }
 };
 </script>
   
