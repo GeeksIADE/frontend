@@ -47,6 +47,8 @@
         "title": "Titel",
         "game": "Spiel",
         "rank": "Rang",
+        "rank_min": "Min Rang",
+        "rank_max": "Max Rang",
         "region": "Region",
         "join-btn": "Beitreten",
         "join-code": "Mit einem Code beitreten",

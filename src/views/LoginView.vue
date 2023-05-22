@@ -2,8 +2,15 @@
     <div class="login-frame container">
         <div class="row justify-content-md-center justify-content-center">
             <div class="col">
-                PLACEHOLDER
-                <img src="../assets/test.png" alt="" srcset="" class="img-fluid">
+                <carousel :wrapAround="true" :transition="5000" :autoplay="1" :items-to-show="1">
+                    <slide v-for="slide in 7" :key="slide">
+                        <div class="carousel__item"><img :src="'/src/assets/carroussel/game' + slide + '.png'"></div>
+                    </slide>
+                    <template #addons>
+                        <navigation />
+                        <pagination />
+                    </template>
+                </carousel>
             </div>
             <div class="login-frame-right col full-height justify-content-center">
                 <div class="col-12 text-center align-self-center py-5">
@@ -76,8 +83,15 @@
     </div>
 </template>
 <script>
-
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 export default {
+    components: {
+        Carousel,
+        Slide,
+        Pagination,
+        Navigation,
+    },
     computed: {
         isAuthenticated() {
             return this.$store.state.isAuthenticated
@@ -162,6 +176,50 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 
+.carousel__slide {
+    padding: 5px;
+}
+
+.carousel__slide img {
+    height: 250px;
+}
+
+.carousel__viewport {
+    perspective: 2000px;
+}
+
+.carousel__track {
+    transform-style: preserve-3d;
+}
+
+.carousel__slide--sliding {
+    transition: 0.5s;
+}
+
+.carousel__slide {
+    opacity: 0.9;
+    transform: rotateY(-20deg) scale(0.9);
+}
+
+.carousel__slide--active~.carousel__slide {
+    transform: rotateY(20deg) scale(0.9);
+}
+
+.carousel__slide--prev {
+    opacity: 1;
+    transform: rotateY(-10deg) scale(0.95);
+}
+
+.carousel__slide--next {
+    opacity: 1;
+    transform: rotateY(10deg) scale(0.95);
+}
+
+.carousel__slide--active {
+    opacity: 1;
+    transform: rotateY(0) scale(1.1);
+}
+
 /* @media (min-width: 1024px) {
     .login {
         min-height: 100vh;
@@ -169,6 +227,23 @@ export default {
         align-items: center;
     }
 } */
+
+.meu-elemento {
+    width: 100px;
+    height: 100px;
+    background-color: #4CAF50;
+    animation: girar 2s infinite linear;
+}
+
+@keyframes girar {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 .login-frame {
     margin-top: 10%;
@@ -260,7 +335,7 @@ h6 span {
     height: 36px;
     border-radius: 10%;
     color: #660b9b;
-    background-color: #2a2b38;
+    background-color: #660b9b;
     content: '';
     z-index: 20;
     font-size: 12px;

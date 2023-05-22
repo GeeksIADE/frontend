@@ -111,11 +111,11 @@ export default {
                 const token = Cookies.get('token'); // Get the bearer token from cookies
                 const resp = await fetch("http://127.0.0.1:7000/api/users/me", {
                     headers: {
-                        Authorization: `Bearer ${token}` // Include the bearer token in the request headers
+                        Authorization: `Bearer ${token}`
                     }
                 });
 
-                const data = await resp.json(); // Parse the response data
+                const data = await resp.json();
 
                 this.user.name = data.first_name + " " + data.last_name;
                 this.user.email = data.email;

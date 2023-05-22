@@ -21,19 +21,21 @@
                             <tr>
                                 <th>{{ $t("rooms.title") }}</th>
                                 <th>{{ $t("rooms.game") }}</th>
-                                <th>{{ $t("rooms.rank") }}</th>
-                                <th>{{ $t("rooms.region") }}</th>
+                                <th>{{ $t("rooms.rank_min") }}</th>
+                                <th>{{ $t("rooms.rank_max") }}</th>
+                                <th>{{ $t("rooms.max_people") }}</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="room in filteredRooms" :key="room.id">
-                                <td>{{ room.title }}</td>
-                                <td>{{ room.game }}</td>
-                                <td>{{ room.rank }}</td>
-                                <td>{{ room.region }}</td>
+                                <td>{{ room.room_name }}</td>
+                                <td>{{ room.game_name }}</td>
+                                <td>{{ room.min_rank }}</td>
+                                <td>{{ room.max_rank }}</td>
+                                <td>{{ room.max_players }}</td>
                                 <td>
-                                    <button class="btn btn-primary" @click="joinRoom(room.code)">
+                                    <button class="btn btn-primary" @click="joinRoom(room.room_id)">
                                         {{ $t("rooms.join-btn") }}
                                     </button>
                                 </td>
@@ -58,7 +60,7 @@
     </div>
 </template>
   
-<script>
+<!-- <script>
 export default {
     name: "JoinRoom",
     data() {
@@ -118,7 +120,92 @@ export default {
         },
     },
 };
+</script> -->
+
+<script>
+import Cookies from 'js-cookie';
+export default {
+    name: "JoinRoom",
+    data() {
+        return {
+            selectedGame: "All",
+            searchText: "",
+            rooms: [],
+            games: [],
+            roomCode: "",
+        };
+    },
+    async created() {
+        try {
+            const response = await fetch('http://127.0.0.1:7000/api/rooms');
+            const data = await response.json();
+            this.rooms = data;
+
+            // Fetch game information for each room
+            const gameIds = Array.from(new Set(this.rooms.map(room => room.game_id)));
+            for (const gameId of gameIds) {
+                const gameResponse = await fetch(`http://127.0.0.1:7000/api/games/${gameId}`);
+                const gameData = await gameResponse.json();
+                const gameName = gameData.game_name;
+
+                // Update the room object with game information
+                this.rooms.forEach(room => {
+                    if (room.game_id === gameId) {
+                        room.game_name = gameName;
+                    }
+                });
+            }
+
+            this.games = ["All", ...new Set(this.rooms.map(room => room.game_name))];
+        } catch (err) {
+            console.error(err);
+        }
+    },
+    computed: {
+        filteredRooms() {
+            return this.rooms.filter(room => {
+                return (
+                    (this.selectedGame === "All" || this.selectedGame === room.game_name) &&
+                    (room.room_name.toLowerCase().includes(this.searchText.toLowerCase()) ||
+                        room.game_name.toLowerCase().includes(this.searchText.toLowerCase()) ||
+                        room.min_rank.toString().includes(this.searchText) ||
+                        room.max_rank.toString().includes(this.searchText) ||
+                        room.max_players.toString().includes(this.searchText))
+                );
+            });
+        },
+    },
+    methods: {
+        async joinRoom(roomId) {
+            try {
+                const token = Cookies.get('token');
+                const response = await fetch(`http://127.0.0.1:7000/api/rooms/join/${roomId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({}),
+                });
+
+                if (response.ok) {
+                    console.log('Successfully joined the room');
+                    this.$router.push(`/lobby/${roomId}`); // Redirect to the lobby with the room ID
+                } else {
+                    throw new Error('Failed to join the room');
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        },
+        joinWithCode() {
+            this.joinRoom(this.roomCode);
+        },
+    },
+};
 </script>
+
+
   
 
 <style scoped>

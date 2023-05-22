@@ -76,7 +76,7 @@ export default {
                     Authorization: `Bearer ${token}`
                 }
             });
-            const { clusters, currentUserClusterIndex } = await response.json();
+            const { clusters, currentUserClusterIndex, user } = await response.json();
             clusters.forEach((cluster, index) => {
                 const rectangle = Cesium.Rectangle.fromDegrees(
                     cluster.minLongitude,
@@ -101,7 +101,7 @@ export default {
 
                     this.viewer.entities.add({
                         name: "User Cluster",
-                        position: Cesium.Cartesian3.fromDegrees(centerLongitude, centerLatitude),
+                        position: Cesium.Cartesian3.fromDegrees(user.user_longitude, user.user_latitude),
                         billboard: {
                             image: "../assets/pin.png",
                             verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
@@ -120,4 +120,3 @@ export default {
     background-color: transparent !important;
 }
 </style>
-  

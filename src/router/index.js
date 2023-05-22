@@ -8,6 +8,7 @@ import GameView from '../views/GameView.vue';
 import MapView from '../views/MapView.vue';
 import CreateRoom from '../views/CreateRoom.vue';
 import JoinRoom from '../views/JoinRoom.vue';
+import LobbyView from '../views/GameLobby.vue';
 import store from '../store.js';
 import Cookies from 'js-cookie';
 
@@ -48,6 +49,11 @@ const routes = [
   { path: '/map', component: MapView },
   { path: '/rooms/create', component: CreateRoom },
   { path: '/rooms/join', component: JoinRoom },
+  {
+    path: '/lobby/:roomId',
+    name: 'game-lobby',
+    component: LobbyView,
+  },
 ];
 
 const router = createRouter({
