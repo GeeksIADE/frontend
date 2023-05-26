@@ -1,8 +1,8 @@
 <template>
     <div class="container game-lobby">
         <div class="chat-bar">
+            <!-- Chat messages display -->
             <div class="chat-messages">
-                <!-- Chat messages display -->
                 <div class="chat-message" v-for="message in chat_messages" :key="message.id">
                     <span class="chat-sender">{{ message.sender }}:</span>
                     <span class="chat-content">{{ message.content }}</span>
@@ -15,11 +15,20 @@
         </div>
         <div class="game-info">
             <h2>{{ room.room_name }}</h2>
-            <p>Game URL: {{ gameUrl }}</p>
+            <!-- <p>Game URL: {{ gameUrl }}</p> -->
             <!-- Additional game information -->
+        </div>
+        <div class="room-members">
+            <h2>Room Members</h2>
+            <ul>
+                <li v-for="user in users" :key="user.id">{{ user.user_name }}</li>
+            </ul>
+            <button class="leave-button" @click="leaveRoom">Leave</button>
         </div>
     </div>
 </template>
+  
+  
   
 <script>
 import Cookies from 'js-cookie';
@@ -62,6 +71,21 @@ export default {
                 } else {
                     throw new Error('Failed to fetch game URL');
                 }
+
+                // Fetch room members
+                const membersResponse = await fetch(`http://127.0.0.1:7000/api/rooms/${roomId}/members`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                const membersData = await membersResponse.json();
+                console.log(membersData);
+
+                if (membersResponse.ok) {
+                    this.users = membersData; // Update the users array with room members
+                } else {
+                    throw new Error('Failed to fetch room members');
+                }
             } else {
                 throw new Error('Failed to fetch room details');
             }
@@ -98,6 +122,29 @@ export default {
         }
     },
     methods: {
+        async leaveRoom() {
+            const roomId = this.$route.params.roomId;
+            const token = Cookies.get('token');
+            try {
+                const response = await fetch(`http://127.0.0.1:7000/api/rooms/leave/${roomId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    // Handle the successful leave room response
+                    console.log('Successfully left the room');
+                    this.$router.push('/rooms/join');
+                } else {
+                    throw new Error('Failed to leave the room');
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        },
         sendMessage() {
             console.log('Sending chat message:', this.newMessage);
             const message = this.newMessage;
@@ -118,6 +165,42 @@ export default {
 </script>
     
 <style scoped>
+.room-members {
+    width: 200px;
+    border-left: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.room-members h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.room-members ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.room-members li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.leave-button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.leave-button:hover {
+    background-color: #c82333;
+}
+
 .game-lobby {
     display: flex;
     flex-direction: column;

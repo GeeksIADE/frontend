@@ -63,8 +63,8 @@ export default {
 
             const direction = event.deltaY < 0 ? 1.0 : -1.0;
             const zoomAmount = 0.05 * direction;
-            viewer.camera.zoomIn(zoomAmount);
-            viewer.camera.zoomoUT(zoomAmount);
+            this.viewer.camera.zoomIn(zoomAmount);
+            this.viewer.camera.zoomoUT(zoomAmount);
         };
         canvas.addEventListener("wheel", handleWheel, { passive: false });
     },

@@ -47,11 +47,13 @@
         "title": "Título",
         "game": "Jogo",
         "rank": "Classificação",
+        "Mode": "Modo",
         "rank_min": "Rank Min",
         "rank_max": "Rank Max",
         "max_people": "Max. utilizadores",
         "region": "Região",
         "join-btn": "Entrar",
+        "leave-btn": "Sair",
         "join-code": "Entrar com um código",
         "access-code": "Código de acesso à sala"
     },

@@ -47,11 +47,13 @@
         "title": "Title",
         "game": "Game",
         "rank": "Rank",
+        "mode": "Mode",
         "rank_min": "Min. Rank",
         "rank_max": "Max. Rank",
         "max_people": "Max. users",
         "region": "Region",
         "join-btn": "Join",
+        "leave-btn": "Leave",
         "join-code": "Join with a code",
         "access-code": "Room access code"
     },
