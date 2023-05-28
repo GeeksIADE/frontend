@@ -1,5 +1,15 @@
 <template>
-    <div ref="container" style="height: 90vh; width: 90%; margin: auto; position: relative;"></div>
+    <div ref="container" style="height: 90vh; width: 90%; margin: auto; position: relative;">
+        <div class="legend">
+            <h3>User Clusters</h3>
+            <p>Each colored rectangle represents a cluster of users based on their geographical locations.</p>
+            <p>The pin marks your current location.</p>
+            <div class="legend-item" v-for="(color, index) in usedColors" :key="index"
+                :style="{ backgroundColor: color.toCssColorString() }">
+                Cluster {{ index + 1 }}
+            </div>
+        </div>
+    </div>
 </template>
   
 <script>
@@ -118,5 +128,39 @@ export default {
 <style scoped>
 .cesium-viewer canvas {
     background-color: transparent !important;
+}
+
+.legend {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 300px;
+    /* This will make sure the legend does not overlap the map */
+    z-index: 1000;
+}
+
+.legend h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #000;
+}
+
+.legend p {
+    color: #000;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 5px;
 }
 </style>
