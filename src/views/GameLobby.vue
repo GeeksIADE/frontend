@@ -46,12 +46,23 @@ export default {
         };
     },
     async created() {
-        console.log('Created method executed');
-
         // Fetch room details and game URL from the backend
         const roomId = this.$route.params.roomId;
+        let endpoint = "";
+        let endpointMembers = "";
+        const integerRoomId = parseInt(roomId, 10);
+        if (isNaN(integerRoomId)) {
+            endpoint = `http://127.0.0.1:7000/api/rooms/private/${roomId}`;
+            endpointMembers = `http://127.0.0.1:7000/api/rooms/private/${roomId}/members`;
+        }
+        else {
+            endpoint = `http://127.0.0.1:7000/api/rooms/${roomId}`;
+            endpointMembers = `http://127.0.0.1:7000/api/rooms/${roomId}/members`;
+        }
+        console.log('Created method executed');
+
         try {
-            const roomResponse = await fetch(`http://127.0.0.1:7000/api/rooms/${roomId}`);
+            const roomResponse = await fetch(endpoint);
             const roomData = await roomResponse.json();
 
             if (roomResponse.ok) {
@@ -73,7 +84,7 @@ export default {
                 }
 
                 // Fetch room members
-                const membersResponse = await fetch(`http://127.0.0.1:7000/api/rooms/${roomId}/members`, {
+                const membersResponse = await fetch(endpointMembers, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -124,9 +135,16 @@ export default {
     methods: {
         async leaveRoom() {
             const roomId = this.$route.params.roomId;
+            let endpoint = "";
+            const integerRoomId = parseInt(roomId, 10);
+            if (isNaN(integerRoomId)) {
+                endpoint = `http://127.0.0.1:7000/api/rooms/private/leave/${roomId}`;
+            } else {
+                endpoint = `http://127.0.0.1:7000/api/rooms/leave/${roomId}`;
+            }
             const token = Cookies.get('token');
             try {
-                const response = await fetch(`http://127.0.0.1:7000/api/rooms/leave/${roomId}`, {
+                const response = await fetch(endpoint, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

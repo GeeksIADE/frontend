@@ -182,7 +182,7 @@ export default {
           game_id: this.selectedGame.game_id,
           mode_id: this.selectedMode.mode_id,
           is_private: this.isPrivate,
-          access_code: this.accessCode,
+          room_code: this.accessCode,
         }),
       });
       if (response.ok) {

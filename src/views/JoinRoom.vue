@@ -77,7 +77,7 @@
                 <input type="text" class="form-control" id="roomCode" v-model="roomCode"
                   :placeholder="$t('rooms.access-code')" style="width: 150px;" />
                 <button type="button" style="margin-bottom: 10px" class="btn btn-primary input-group-append"
-                  @click="joinRoomPrivate(roomCode)">
+                  @click="joinRoomWithCode(roomCode)">
                   {{ $t("rooms.join-btn") }}
                 </button>
               </div>
@@ -111,7 +111,12 @@ export default {
   },
   async created() {
     try {
-      const response = await fetch('http://127.0.0.1:7000/api/rooms');
+      const response = await fetch('http://127.0.0.1:7000/api/rooms', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      });
       const data = await response.json();
       console.log(data);
       this.rooms = data;
@@ -198,12 +203,23 @@ export default {
     async fetchRoomMembersOnLoad(roomId) {
       try {
         const token = Cookies.get('token');
-        const response = await fetch(`http://127.0.0.1:7000/api/rooms/${roomId}/members`, {
+        let endpoint = "";
+        const integerRoomId = parseInt(roomId, 10);
+        console.log(roomId);
+        console.log(parseInt(roomId, 10));
+        if (isNaN(integerRoomId)) {
+          endpoint = `http://127.0.0.1:7000/api/rooms/private/${roomId}/members`;
+        }
+        else {
+          endpoint = `http://127.0.0.1:7000/api/rooms/${roomId}/members`;
+        }
+        const response = await fetch(endpoint, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
         });
+        // lowxpi5x
 
         if (response.ok) {
           const data = await response.json();
@@ -218,7 +234,17 @@ export default {
     async fetchRoomMembers(roomId) {
       try {
         const token = Cookies.get('token');
-        const response = await fetch(`http://127.0.0.1:7000/api/rooms/${roomId}/members`, {
+        let endpoint = "";
+        const integerRoomId = parseInt(roomId, 10);
+        console.log(isNaN(integerRoomId));
+        console.log(integerRoomId.toString() !== roomId);
+        if (isNaN(integerRoomId)) {
+          endpoint = `http://127.0.0.1:7000/api/rooms/private/${roomId}/members`;
+        }
+        else {
+          endpoint = `http://127.0.0.1:7000/api/rooms/${roomId}/members`;
+        }
+        const response = await fetch(endpoint, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
@@ -259,6 +285,28 @@ export default {
         if (response.ok) {
           console.log('Successfully joined the room');
           this.$router.push(`/lobby/${roomId}`); // Redirect to the lobby with the room ID
+        } else {
+          throw new Error('Failed to join the room');
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    async joinRoomWithCode(roomCode) {
+      try {
+        const token = Cookies.get('token');
+        const response = await fetch(`http://127.0.0.1:7000/api/rooms/private/join/${roomCode}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({}),
+        });
+
+        if (response.ok) {
+          console.log('Successfully joined the room');
+          this.$router.push(`/lobby/${roomCode}`); // Redirect to the lobby with the room code
         } else {
           throw new Error('Failed to join the room');
         }
